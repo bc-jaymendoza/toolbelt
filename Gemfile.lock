@@ -54,6 +54,7 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.2)
+    daemons (1.2.4)
     debug_inspector (0.0.2)
     delayed_job (4.1.2)
       activesupport (>= 3.0, < 5.1)
@@ -63,6 +64,10 @@ GEM
     delayed_job_recurring (0.3.5)
       delayed_job (>= 3.0)
       delayed_job_active_record
+    dotenv (2.1.1)
+    dotenv-rails (2.1.1)
+      dotenv (= 2.1.1)
+      railties (>= 4.0, < 5.1)
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.14)
@@ -173,8 +178,10 @@ DEPENDENCIES
   bootstrap (~> 4.0.0.alpha3)
   byebug
   coffee-rails (~> 4.2)
+  daemons
   delayed_job_active_record
   delayed_job_recurring
+  dotenv-rails
   httparty
   jbuilder (~> 2.5)
   jquery-rails
