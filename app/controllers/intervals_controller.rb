@@ -5,7 +5,13 @@ class IntervalsController < ApplicationController
 	end
 
 	def between
-		@intervals = Interval.created_between(params[:min_date], params[:max_date])
+		case params[:calls]
+		when 'offered'
+			@intervals = Interval.calls_offered(params[:min_date], params[:max_date])
+		when 'handled'
+			@intervals = Interval.calls_handled(params[:min_date], params[:max_date])
+		end
+
 		render json: @intervals
 	end
 end
