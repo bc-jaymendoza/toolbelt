@@ -1,4 +1,4 @@
-url = 'https://www.bcstoretools.com/api/v1/call_data'
+url = 'https://www.bcstoretools.com/api/v1/call_data?sort=asc'
 auth = {:username => ENV['API_USER'],
         :password => ENV['API_KEY']}
 
