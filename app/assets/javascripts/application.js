@@ -15,4 +15,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require highstock
+//= require jay
 //= require_tree .
