@@ -17,5 +17,4 @@
 .byebug_history
 
 *.swp
-.env
 .DS_Store

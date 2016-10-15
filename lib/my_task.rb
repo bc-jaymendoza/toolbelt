@@ -8,8 +8,8 @@ class MyTask
 
   def perform
     url = 'https://www.bcstoretools.com/api/v1/call_data'
-    auth = {:username => ENV['API_USER'],
-	    :password => ENV['API_KEY']}
+    #auth = {:username => ENV['API_USER'],
+		#:password => ENV['API_KEY']}
 
     HTTParty.get(url, :basic_auth => auth).each do |i|
 	 Interval.create(api_id: i['id'],
