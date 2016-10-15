@@ -16,8 +16,8 @@ class IntervalsController < ApplicationController
 	end
 
 	def recent
-		min_date = Time.now.to_i - (params[:count].to_i * 900)
 		max_date = Time.now.to_i
+		min_date = max_date - (params[:count].to_i * 900)
 
 		@intervals = Interval.calls(min_date, max_date)
 		render json: @intervals
