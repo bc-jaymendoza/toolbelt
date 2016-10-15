@@ -3,10 +3,6 @@ $(function () {
         seriesCounter = 0,
         names = ['offered', 'handled'];
 
-    /**
-     * Create the chart when all data is loaded
-     * @returns {undefined}
-     */
     function createChart() {
 
         $('#container').highcharts('StockChart', {
@@ -61,3 +57,5 @@ $(function () {
         });
     });
 });
+
+// setInterval(function() { series.addPoint([startTime,startPoint], false, true); startPoint += 2; startTime += 900000; }, 1000);
