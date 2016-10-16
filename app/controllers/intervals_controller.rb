@@ -1,6 +1,12 @@
 class IntervalsController < ApplicationController
 	def all
-		@intervals = Interval.all
+		case params[:calls]
+		when 'offered'
+			@intervals = Interval.all_calls_offered
+		when 'handled'
+			@intervals = Interval.all_calls_handled
+		end
+
 		render json: @intervals
 	end
 
@@ -17,9 +23,9 @@ class IntervalsController < ApplicationController
 
 	def recent
 		max_date = Time.now.to_i
-		min_date = max_date - (params[:count].to_i * 900)
+		min_date = Time.now.to_i - (params[:count].to_i * 900)
 
-		@intervals = Interval.calls(min_date, max_date)
+		@intervals = Interval.recent(min_date, max_date)
 		render json: @intervals
 	end
 end

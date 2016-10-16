@@ -42,7 +42,7 @@ $(function () {
 
     $.each(names, function (i, name) {
 
-        $.getJSON('/intervals/between?min_date=1476333005&max_date=1476419412&calls=' + name, function (data) {
+        $.getJSON('/intervals/all?calls=' + name, function (data) {
 
             seriesOptions[i] = {
                 name: name,
