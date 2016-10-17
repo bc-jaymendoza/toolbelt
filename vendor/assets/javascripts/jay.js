@@ -3,20 +3,41 @@ $(function () {
         seriesCounter = 0,
         names = ['offered', 'handled'];
 
+    //configuration
     function createChart() {
+        $('#chart-container').highcharts('StockChart', {
 
-        $('#container').highcharts('StockChart', {
+			rangeSelector: {
+				buttons: [{
+					type: 'day',
+					count: 1,
+					text: '1D'
+				}, {
+					type: 'week',
+					count: 1,
+					text: '1W'
+				}, {
+					type: 'all',
+					text: 'All'
+				}],
+				inputEnabled: false,
+				selected: 0
+			},
 
-            rangeSelector: {
-                selected: 2
-            },
+			title: {
+				text: 'Calls Offered & Handled (15 minute interval)'
+			},
+
+			legend: {
+				enabled: true,
+				align: 'center',
+				backgroundColor: '#FFFFFF',
+				borderColor: 'black',
+				borderWidth: 2,
+				shadow: true
+			},
 
             yAxis: {
-                labels: {
-                    formatter: function () {
-                        return (this.value > 0 ? ' + ' : '') + this.value + '%';
-                    }
-                },
                 plotLines: [{
                     value: 0,
                     width: 2,
@@ -26,13 +47,16 @@ $(function () {
 
             plotOptions: {
                 series: {
+					dataGrouping: {
+						enabled: false
+					},
                     showInNavigator: true
                 }
             },
 
             tooltip: {
-                pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
-                valueDecimals: 2,
+                pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b><br/>',
+                valueDecimals: 1,
                 split: true
             },
 
