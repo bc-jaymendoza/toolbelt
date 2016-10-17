@@ -84,10 +84,11 @@ $(function () {
     //update data on a recurring basis
     setInterval(function() {
 		var chart = $('#chart-container').highcharts();
-		series = chart.series[0];
-		recentGraphedPoints = series.points.slice(series.points.length-1, series.points.length);
+		offeredSeries = chart.series[0];
+		handledSeries = chart.series[1];
+		//recentGraphedPoints = series.points.slice(series.points.length-1, series.points.length);
 
-		//store 16 most recent intervals
+		//store last interval
 		var lastApiPoint = $.parseJSON($.ajax({
 			url:  '/intervals/last',
 			dataType: "json", 
@@ -95,20 +96,18 @@ $(function () {
 		}).responseText);
 		lastApiPoint.timestamp *= 1000;
 
-		lastPointGraphed = series.points.slice(-1).pop();
+		offeredLastPointGraphed = offeredSeries.points.slice(-1).pop();
+		handledLastPointGraphed = handledSeries.points.slice(-1).pop();
 
-		//updatedPointData.forEach(function(point) {
-		//	console.log(point.timestamp);
-		//});
-
-		console.log('last point: ' + lastPointGraphed.x);
-		console.log('updated point: ' + lastApiPoint.timestamp);
-
-		if (lastPointGraphed.x != lastApiPoint.timestamp) {
-			series.addPoint(lastApiPoint.timestamp, lastApiPoint.calls_offered)
+		if (lastApiPoint.timestamp > offeredLastPointGraphed.x) {
+			offeredSeries.addPoint([lastApiPoint.timestamp, lastApiPoint.calls_offered])
 			chart.redraw();
 		}
 
+		if (lastApiPoint.timestamp > handledLastPointGraphed.x) {
+			handledSeries.addPoint([lastApiPoint.timestamp, lastApiPoint.calls_offered])
+			chart.redraw();
+		}
 
 		//recentGraphedPoints.forEach(function(recentGraphedPoint) {
 		//	updatedPointData.forEach(function(updatedPoint) {
