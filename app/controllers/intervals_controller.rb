@@ -28,4 +28,9 @@ class IntervalsController < ApplicationController
 		@intervals = Interval.recent(min_date, max_date)
 		render json: @intervals
 	end
+
+	def last
+		@interval = Interval.last
+		render json: @interval
+	end
 end
